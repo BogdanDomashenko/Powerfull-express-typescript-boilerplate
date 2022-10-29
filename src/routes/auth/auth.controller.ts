@@ -11,16 +11,16 @@ export const signin = asyncHandler(async (req, res) => {
   res.json({ message: "signin" });
 });
 
-export const signup = (req: Request, res: Response) => {
+export const signup = asyncHandler(async (req: Request, res: Response) => {
   const dto: AuthDto = req.body;
 
   AuthService.signup(dto);
 
   res.json({ message: "signup" });
-};
+});
 
-export const logout = (req: Request, res: Response) => {
+export const logout = asyncHandler(async (req: Request, res: Response) => {
   AuthService.logout();
 
   res.json({ message: "logout" });
-};
+});
