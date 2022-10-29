@@ -8,7 +8,7 @@ import "module-alias/register";
 import indexRouter from "./src/routes";
 import { exceptionMiddleware } from "./lib";
 
-const mode = process.env.NODE_ENV;
+const mode = process.env.NODE_ENV || "dev";
 
 dotenv.config({ path: `.${mode}.env` });
 
@@ -17,6 +17,8 @@ const port = process.env.PORT || 3001;
 
 app.use(logger("dev"));
 app.use(cors({ credentials: true, origin: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/api", indexRouter);

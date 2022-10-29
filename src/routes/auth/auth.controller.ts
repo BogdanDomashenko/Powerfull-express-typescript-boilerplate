@@ -1,14 +1,26 @@
 import { Response, Request, NextFunction } from "express";
 import { asyncHandler } from "@lib";
+import { AuthDto } from "./dto/auth.dto";
+import { AuthService } from "./auth.service";
 
-export const signin = asyncHandler(async (req, res, next) => {
+export const signin = asyncHandler(async (req, res) => {
+  const dto: AuthDto = req.body;
+
+  AuthService.signin(dto);
+
   res.json({ message: "signin" });
 });
 
-export const signup = (req: Request, res: Response, next: NextFunction) => {
+export const signup = (req: Request, res: Response) => {
+  const dto: AuthDto = req.body;
+
+  AuthService.signup(dto);
+
   res.json({ message: "signup" });
 };
 
-export const logout = (req: Request, res: Response, next: NextFunction) => {
+export const logout = (req: Request, res: Response) => {
+  AuthService.logout();
+
   res.json({ message: "logout" });
 };

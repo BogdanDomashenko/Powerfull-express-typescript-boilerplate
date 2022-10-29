@@ -10,6 +10,8 @@
   "author": "Cesar",
   "license": "ISC",
   "dependencies": {
+    "class-transformer-validator": "^0.9.1",
+    "class-validator": "^0.13.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
