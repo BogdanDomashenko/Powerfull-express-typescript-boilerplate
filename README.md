@@ -11,11 +11,11 @@ This is powerfull Express wrapper!
 
 ## Error handling
 
-```
+```typescript
 import { asyncHandler, Exception } from "@lib";
 
 export const signin = asyncHandler(async (req, res) => {
-  if(!req.body.user) {
+  if (!req.body.user) {
     throw Exception.badRequest("user must be provided");
   }
 });
@@ -27,11 +27,11 @@ if we use asyncHandlers we shouldn't use try/catch for catching error and sendin
 
 ## Validation
 
-We are using [class-validator][https://github.com/typestack/class-validator] for validation.
+We are using [class-validator](https://github.com/typestack/class-validator) for validation.
 
 ### Example
 
-```
+```typescript
 // dto:
 import { IsNotEmpty, IsEmail } from "class-validator";
 
