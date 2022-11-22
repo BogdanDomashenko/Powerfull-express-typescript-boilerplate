@@ -9,5 +9,16 @@ export type HandlerFunction = (
 export const asyncHandler =
   (callback: HandlerFunction) =>
   async (req: Request, res: Response, next: NextFunction) => {
-    return Promise.resolve(callback(req, res, next)).catch(next);
+    const promise = Promise.resolve(callback(req, res, next)).catch(next);
+    const result = await promise;
+
+    if (result) {
+      if (!res.headersSent) {
+        res.json(result);
+      } else {
+        throw new Error("You can send response only once");
+      }
+    }
+
+    return promise;
   };

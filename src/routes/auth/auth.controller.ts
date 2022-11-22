@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from "express";
-import { asyncHandler } from "@lib";
+import { asyncHandler, Exception } from "@lib";
 import { AuthDto } from "./dto/auth.dto";
 import { AuthService } from "./auth.service";
 
@@ -8,7 +8,7 @@ export const signin = asyncHandler(async (req, res) => {
 
   AuthService.signin(dto);
 
-  res.json({ message: "signin" });
+  return { message: "signin" };
 });
 
 export const signup = asyncHandler(async (req: Request, res: Response) => {
@@ -16,11 +16,11 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
 
   AuthService.signup(dto);
 
-  res.json({ message: "signup" });
+  return { message: "signup" };
 });
 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
   AuthService.logout();
 
-  res.json({ message: "logout" });
+  return { message: "logout" };
 });
