@@ -1,12 +1,11 @@
 {
-  "name": "express-ts-boilerplate",
+  "name": "express-ts-boilerplate-class-validator",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "tsc && NODE_ENV=production node ./dist/main.js",
-    "start:dev:beta": "ts-node-dev --respawn main.ts",
-    "start:dev": "concurrently --kill-others -c '#be4fff' \"tsc -w\" \"NODE_ENV=dev nodemon dist/main.js\""
+    "start:dev": "ts-node-dev --respawn main.ts"
   },
   "author": "Cesar",
   "license": "ISC",
