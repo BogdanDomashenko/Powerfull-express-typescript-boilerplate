@@ -33,6 +33,6 @@ app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
 
 app.listen(port, () => {
   console.clear();
-  console.log(`[server]: Server is running at https://localhost:${port}`);
+  console.log(`[server]: Server is running at http://localhost:${port}`);
   console.log(`[server]: Mode: ${mode}`);
 });

@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "tsc && NODE_ENV=production node ./dist/main.js",
+    "start:dev:beta": "ts-node-dev --respawn main.ts",
     "start:dev": "concurrently --kill-others -c '#be4fff' \"tsc -w\" \"NODE_ENV=dev nodemon dist/main.js\""
   },
   "author": "Cesar",
@@ -28,6 +29,8 @@
     "@types/node": "^18.11.7",
     "concurrently": "^7.5.0",
     "nodemon": "^2.0.20",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.1.2",
     "typescript": "^4.8.4"
   },
   "_moduleAliases": {
