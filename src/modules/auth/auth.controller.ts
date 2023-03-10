@@ -1,10 +1,10 @@
 import { Response, Request, NextFunction } from "express";
 import { asyncHandler } from "@lib";
-import { AuthDto } from "./dto/auth.dto";
+import { AuthSchema } from "./auth.schema";
 import { AuthService } from "./auth.service";
 
 export const signin = asyncHandler(async (req, res) => {
-  const dto: AuthDto = req.body;
+  const dto: AuthSchema = req.body;
 
   AuthService.signin(dto);
 
@@ -12,7 +12,7 @@ export const signin = asyncHandler(async (req, res) => {
 });
 
 export const signup = asyncHandler(async (req: Request, res: Response) => {
-  const dto: AuthDto = req.body;
+  const dto: AuthSchema = req.body;
 
   AuthService.signup(dto);
 

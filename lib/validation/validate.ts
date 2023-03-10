@@ -3,9 +3,8 @@
 import { transformAndValidate } from "class-transformer-validator";
 import { Request, Response, NextFunction } from "express";
 
-const isProd = process.env.NODE_ENV === "production";
-
-export function validateBody<T>(
+export function validate<T>(
+  validationParam: 'body' | 'params' | 'query',
   entity: T,
   whitelist = true,
   errorHandler?: (
@@ -20,14 +19,14 @@ export function validateBody<T>(
     res: Response,
     next: NextFunction
   ) {
-    const toValidate = req.body;
+    const toValidate = req[validationParam];
     if (!toValidate) {
       if (errorHandler) {
         errorHandler({ type: "no-body" }, req, res, next);
       } else {
         res.status(400).json({
           error: true,
-          message: "Validation failed",
+          message: validationParam + ": validation failed",
         });
       }
     } else {
@@ -44,7 +43,7 @@ export function validateBody<T>(
           } else {
             res.status(400).json({
               statusCode: 400,
-              message: "Validation failed",
+              message: validationParam + ": validation failed",
               errors: err.map(
                 (errItem: any) => Object.values(errItem.constraints)[0]
               ),

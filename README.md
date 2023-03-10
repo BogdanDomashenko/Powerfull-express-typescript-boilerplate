@@ -35,7 +35,7 @@ We are using [class-validator](https://github.com/typestack/class-validator) for
 // dto:
 import { IsNotEmpty, IsEmail } from "class-validator";
 
-export class AuthDto {
+export class AuthSchema {
   @IsEmail()
   email: string;
   @IsNotEmpty()
@@ -44,9 +44,9 @@ export class AuthDto {
 
 //route
 import { validateBody } from "@lib";
-import { AuthDto } from "./dto/auth.dto";
+import { AuthSchema } from "./dto/auth.dto";
 
 const authRouter = express.Router();
 
-authRouter.post("/signup", validateBody(AuthDto), signup);
+authRouter.post("/signup", validateBody(AuthSchema), signup);
 ```
