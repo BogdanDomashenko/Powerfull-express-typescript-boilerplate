@@ -8,7 +8,7 @@ export const signin = asyncHandler(async (req, res) => {
 
   AuthService.signin(dto);
 
-  res.json({ message: 'signin' });
+  return res.json({ message: 'signin' });
 });
 
 export const signup = asyncHandler(async (req: Request, res: Response) => {
@@ -16,11 +16,11 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
 
   AuthService.signup(dto);
 
-  res.json({ message: 'signup' });
+  return res.json({ message: 'signup' });
 });
 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
   AuthService.logout();
 
-  res.json({ message: 'logout' });
+  return res.json({ message: 'logout' });
 });
