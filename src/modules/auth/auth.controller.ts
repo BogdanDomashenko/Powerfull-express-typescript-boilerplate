@@ -11,7 +11,7 @@ export const signin = asyncHandler(async (req, res) => {
   return res.json({ message: 'signin' });
 });
 
-export const signup = asyncHandler(async (req: Request, res: Response) => {
+export const signup = asyncHandler(async (req, res) => {
   const dto: AuthSchema = req.body;
 
   AuthService.signup(dto);
@@ -19,7 +19,7 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
   return res.json({ message: 'signup' });
 });
 
-export const logout = asyncHandler(async (req: Request, res: Response) => {
+export const logout = asyncHandler(async (req, res) => {
   AuthService.logout();
 
   return res.json({ message: 'logout' });
