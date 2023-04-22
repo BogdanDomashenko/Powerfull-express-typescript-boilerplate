@@ -5,7 +5,7 @@ import logger from "morgan";
 import cookieParser from "cookie-parser";
 import "module-alias/register";
 
-import indexRouter from "./src/routes";
+import indexRouter from "./src/modules";
 import { exceptionMiddleware } from "./lib";
 
 const mode = process.env.NODE_ENV || "production";

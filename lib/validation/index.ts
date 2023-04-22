@@ -1,1 +1,1 @@
-export * from "./validateBody";
+export * from "./validate";

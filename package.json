@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "tsc && NODE_ENV=production node ./dist/main.js",
-    "start:dev": "ts-node-dev --respawn main.ts"
+    "start:dev:beta": "ts-node-dev --respawn main.ts",
+    "start:dev": "concurrently --kill-others -c '#be4fff' \"tsc -w\" \"NODE_ENV=dev nodemon dist/main.js\"",
+    "lint": "eslint . --ext .ts"
   },
   "author": "Cesar",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "express": "^4.18.2",
     "http-status-codes": "^2.2.0",
     "module-alias": "^2.2.2",
@@ -26,15 +29,35 @@
     "@types/express": "^4.17.14",
     "@types/morgan": "^1.9.3",
     "@types/node": "^18.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "concurrently": "^7.5.0",
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^4.3.8",
+    "lint-staged": "^13.2.1",
     "nodemon": "^2.0.20",
+    "prettier": "2.8.7",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.1.2",
-    "typescript": "^4.8.4"
+    "typescript": "^5.0.4"
   },
   "_moduleAliases": {
     "@lib": "dist/lib",
     "@utils": "dist/src/common/utils",
     "@types": "dist/src/common/types"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix"
+    ]
   }
 }
