@@ -1,4 +1,3 @@
-import { IsNotEmpty, IsEmail } from 'class-validator';
 import { z } from 'zod';
 
 export const authSchema = z.object({

@@ -1,9 +1,8 @@
-import express from 'express';
-import { validate } from '@lib';
+import { createRouter } from '@lib';
 import { logout, signin, signup } from './auth.controller';
 import { authSchema } from './auth.schema';
 
-const authRouter = express.Router();
+const authRouter = createRouter();
 
 /**
  * @swagger
@@ -15,8 +14,8 @@ const authRouter = express.Router();
  *        description: The user successfully signed up
  */
 
-authRouter.post('/signup', validate('body', authSchema), signup);
-authRouter.post('/signin', validate('body', authSchema), signin);
-authRouter.get('/logout', logout);
+authRouter.post('/signup', { schema: { body: authSchema }, handler: signup });
+authRouter.post('/signin', { schema: { body: authSchema }, handler: signin });
+authRouter.get('/logout', { handler: logout });
 
-export default authRouter;
+export default authRouter.initialize();

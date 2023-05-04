@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { ZodSchema } from 'zod';
 
+export type ValidationParam = 'body' | 'params' | 'query';
+
 export const validate = (
-  validationParam: 'body' | 'params' | 'query',
+  validationParam: ValidationParam,
   schema: ZodSchema
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -18,7 +20,7 @@ export const validate = (
     try {
       schema.parse(toValidate);
       next();
-    } catch (err) {
+    } catch (err: any) {
       const errors: Record<string, string> = {};
 
       for (const item of err.errors) {
